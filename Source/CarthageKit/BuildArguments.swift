@@ -65,15 +65,7 @@ public struct BuildArguments {
 		}
 
 		if let sdk = sdk {
-			// Passing in -sdk macosx appears to break implicit dependency
-			// resolution (see Carthage/Carthage#347).
-			//
-			// Since we wouldn't be trying to build this target unless it were
-			// for OS X already, just let xcodebuild figure out the SDK on its
-			// own.
-			if sdk != .MacOSX {
-				args += [ "-sdk", sdk.rawValue ]
-			}
+			args += [ "-sdk", sdk.rawValue ]
 		}
 		
 		if let toolchain = toolchain {
